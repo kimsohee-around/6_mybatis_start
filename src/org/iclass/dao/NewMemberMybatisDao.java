@@ -33,13 +33,32 @@ public class NewMemberMybatisDao {
 		return result;
 	}
 	
-	public NewMember login(Map<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public NewMember selectOne(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public int update(NewMember vo) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.update("update",vo);
+		mapper.commit();
+		mapper.close();
+		return result;
 	}
 	
+	public int delete(String id) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		int result = mapper.delete("delete",id);
+		mapper.commit();
+		mapper.close();
+		return result;
+	}
+	
+	public NewMember login(Map<String, String> map) {
+		SqlSession mapper = SqlSessionBean.getSession();
+		NewMember vo = mapper.selectOne("login", map);
+		return vo;
+	}
+	public NewMember selectOne(String id){
+		SqlSession mapper = SqlSessionBean.getSession();
+		NewMember result = mapper.selectOne("selectOne",id);
+		mapper.close();
+		return result;
+		
+	}
 }
