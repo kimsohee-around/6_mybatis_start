@@ -52,6 +52,7 @@ public class NewMemberMybatisDao {
 	public NewMember login(Map<String, String> map) {
 		SqlSession mapper = SqlSessionBean.getSession();
 		NewMember vo = mapper.selectOne("login", map);
+		mapper.close();
 		return vo;
 	}
 	public NewMember selectOne(String id){
